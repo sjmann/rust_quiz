@@ -1,4 +1,5 @@
 use std::io;
+mod question;
 
 fn main() {
     let questions = get_questions();
@@ -26,28 +27,6 @@ fn main() {
     println!("You scored: {}", score);
 }
 
-struct Question {
-    text: String,
-    correct_answer: String,
-    chapter: u8,
-    score: u8,
-}
-
-impl Question {
-    fn check_answer(&self, answer: &str) -> bool {
-        answer == self.correct_answer
-    }
-
-    fn new(text: String, correct_answer: String, chapter: u8, score: u8) -> Question {
-        Question {
-            text,
-            correct_answer,
-            chapter,
-            score,
-        }
-    }
-}
-
 fn ask_question(question: &str) -> String {
     println!("{}", question);
 
@@ -59,10 +38,10 @@ fn ask_question(question: &str) -> String {
     String::from(answer.trim())
 }
 
-fn get_questions() -> [Question; 2]
+fn get_questions() -> [question::Question; 2]
 {
-    let question1 = Question::new(String::from("Please type yes"), String::from("yes"), 0, 5,);
-    let question2 = Question::new(String::from("Please type no"), String::from("no"), 0, 10);
+    let question1 = question::Question::new(String::from("Please type yes"), String::from("yes"), 0, 5,);
+    let question2 = question::Question::new(String::from("Please type no"), String::from("no"), 0, 10);
 
     [question1, question2]
 }
