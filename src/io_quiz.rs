@@ -19,6 +19,8 @@ impl IoQuiz {
 
         state.advance(self.questions.len());
     }
+
+    pub fn check_answer()
 }
 
 fn get_questions() -> Vec<question::Question>
