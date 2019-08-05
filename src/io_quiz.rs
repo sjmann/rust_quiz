@@ -1,4 +1,5 @@
 mod question;
+pub mod quiz_state;
 
 pub struct IoQuiz {
     pub questions: Vec<question::Question>,
@@ -8,6 +9,15 @@ impl IoQuiz {
     pub fn new() -> IoQuiz {
         let questions = get_questions();
         IoQuiz{ questions }
+    }
+
+    pub fn get_next_question(&self, state: quiz_state::QuizState) -> Option<question::Question> {
+        let q = match state.is_running {
+            true => Some(self.questions.get(state.question_index)),
+            false => None,
+        };
+
+        state.advance(self.questions.len());
     }
 }
 

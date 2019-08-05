@@ -13,17 +13,16 @@ fn main() {
 
     println!("Chapter: {}", chapter);
 
-    while state.is_running {
-        let question = get_next_question();
-        match question {
-            Some(question) => {
-                let answer = ask_question(&question.text);
-                match question.check_answer(&answer[..]) {
-                    true => println!("NICE"),
-                    false => println!("WRONG")
-                };
-            }
-        }
+    for question in &quiz.questions {
+        let answer = ask_question(&question.text[..]);
+
+        match question.check_answer(&answer[..]) {
+            true => {
+                println!("NICE");
+                score += question.score;
+            },
+            false => println!("WRONG")
+        };
     }
 
     println!("You scored: {}", score);
