@@ -38,10 +38,10 @@ fn ask_question(question: &str) -> String {
     String::from(answer.trim())
 }
 
-fn get_questions() -> [question::Question; 2]
+fn get_questions() -> Vec<question::Question>
 {
     let question1 = question::Question::new(String::from("Please type yes"), String::from("yes"), 0, 5,);
     let question2 = question::Question::new(String::from("Please type no"), String::from("no"), 0, 10);
 
-    [question1, question2]
+    vec![question1, question2]
 }
