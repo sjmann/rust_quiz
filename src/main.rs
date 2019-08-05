@@ -12,7 +12,7 @@ fn main() {
 
     println!("Chapter: {}", chapter);
 
-    for question in questions.iter() {
+    for question in &questions {
         let answer = ask_question(&question.text[..]);
 
         match question.check_answer(&answer[..]) {
