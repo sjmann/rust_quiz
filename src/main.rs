@@ -1,8 +1,9 @@
 use std::io;
-mod question;
+mod io_quiz;
 
 fn main() {
-    let questions = get_questions();
+    let quiz = io_quiz::IoQuiz::new();
+
     let mut score = 0;
 
     let chapter: u8 = match ask_question("What chapter have you read?").parse() {
@@ -12,7 +13,7 @@ fn main() {
 
     println!("Chapter: {}", chapter);
 
-    for question in &questions {
+    for question in &quiz.questions {
         let answer = ask_question(&question.text[..]);
 
         match question.check_answer(&answer[..]) {
@@ -36,12 +37,4 @@ fn ask_question(question: &str) -> String {
         .expect("Failed to read line!");
 
     String::from(answer.trim())
-}
-
-fn get_questions() -> Vec<question::Question>
-{
-    let question1 = question::Question::new(String::from("Please type yes"), String::from("yes"), 0, 5,);
-    let question2 = question::Question::new(String::from("Please type no"), String::from("no"), 0, 10);
-
-    vec![question1, question2]
 }
