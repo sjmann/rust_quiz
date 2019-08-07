@@ -1,10 +1,9 @@
 use std::io;
+
 mod io_quiz;
 
 fn main() {
-    let quiz = io_quiz::IoQuiz::new();
-
-    let mut score = 0;
+    let mut quiz = io_quiz::IoQuiz::new();
 
     let chapter: u8 = match ask_question("What chapter have you read?").parse() {
         Ok(num) => num,
@@ -13,19 +12,9 @@ fn main() {
 
     println!("Chapter: {}", chapter);
 
-    for question in &quiz.questions {
-        let answer = ask_question(&question.text[..]);
-
-        match question.check_answer(&answer[..]) {
-            true => {
-                println!("NICE");
-                score += question.score;
-            },
-            false => println!("WRONG")
-        };
+    while quiz.is_running() {
+        quiz.ask_next();
     }
-
-    println!("You scored: {}", score);
 }
 
 fn ask_question(question: &str) -> String {
