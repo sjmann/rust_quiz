@@ -1,7 +1,7 @@
 use std::io;
 
 mod question;
-pub mod quiz_state;
+mod quiz_state;
 
 
 pub struct IoQuiz {
