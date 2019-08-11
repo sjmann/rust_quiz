@@ -1,8 +1,8 @@
 pub struct Question {
-    pub text: String,
-    pub correct_answer: String,
-    pub chapter: u8,
-    pub score: u8,
+    text: String,
+    correct_answer: String,
+    chapter: u8,
+    score: u8,
 }
 
 impl Question {
@@ -17,5 +17,13 @@ impl Question {
             chapter,
             score,
         }
+    }
+
+    pub fn text(&self) -> &String {
+        &self.text
+    }
+
+    pub fn score(&self) -> u8 {
+        self.score
     }
 }

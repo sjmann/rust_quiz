@@ -23,13 +23,13 @@ impl IoQuiz {
     pub fn ask_next(&mut self) {
         match self.get_next_question() {
             Some(question) => {
-                println!("{}", question.text);
+                println!("{}", question.text());
 
                 let user_answer = poll_for_answer();
                 match question.check_answer(&user_answer) {
                     true => {
                         println!("NICE!!");
-                        self.state.score += question.score;
+                        self.state.score += question.score();
                     },
                     false => println!("AWFUL!"),
                 };
